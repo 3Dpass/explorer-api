@@ -471,10 +471,10 @@ def upgrade():
                                         `cbev`.`event_idx` AS `event_idx`,
                                         `cbev`.`extrinsic_idx` AS `extrinsic_idx`,
                                         0 AS `from_multi_address_type`,
-                                        UNHEX(RIGHT(JSON_UNQUOTE(`cbev`.`data`->"$.event.attributes[0]"),64)) AS `from_multi_address_account_id`,
+                                        UNHEX(RIGHT(JSON_UNQUOTE(`cbev`.`data`->"$.event.attributes[0].value"),64)) AS `from_multi_address_account_id`,
                                         0 AS `to_multi_address_type`,
-                                        UNHEX(RIGHT(JSON_UNQUOTE(`cbev`.`data`->"$.event.attributes[1]"),64)) AS `to_multi_address_account_id`,
-                                        JSON_UNQUOTE(`cbev`.`data`->"$.event.attributes[2]") AS `value`,
+                                        UNHEX(RIGHT(JSON_UNQUOTE(`cbev`.`data`->"$.event.attributes[1].value"),64)) AS `to_multi_address_account_id`,
+                                        JSON_UNQUOTE(`cbev`.`data`->"$.event.attributes[2].value") AS `value`,
                                         `cbts`.`datetime` AS `block_datetime`,
                                         `cbev`.`block_hash` AS `block_hash`,
                                         `cbev`.`complete` AS `complete`
